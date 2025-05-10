@@ -10,7 +10,7 @@ import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -129,11 +129,7 @@ class PlayState extends FlxTransitionableState
 			switch (swagCounter)
 			{
 				case 0:
-					#if flash
 					FlxG.sound.play('assets/sounds/intro3.mp3', 0.6);
-					#else
-					FlxG.sound.play('assets/sounds/intro3.ogg', 0.6);
-					#end
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic('assets/images/ready.png');
 					ready.scrollFactor.set();
@@ -146,11 +142,7 @@ class PlayState extends FlxTransitionableState
 							ready.destroy();
 						}
 					});
-					#if flash
 					FlxG.sound.play('assets/sounds/intro2.mp3', 0.6);
-					#else
-					FlxG.sound.play('assets/sounds/intro2.ogg', 0.6);
-					#end
 				case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic('assets/images/set.png');
 					set.scrollFactor.set();
@@ -163,11 +155,7 @@ class PlayState extends FlxTransitionableState
 							set.destroy();
 						}
 					});
-					#if flash
 					FlxG.sound.play('assets/sounds/intro1.mp3', 0.6);
-					#else
-					FlxG.sound.play('assets/sounds/intro1.ogg', 0.6);
-					#end
 				case 3:
 					var go:FlxSprite = new FlxSprite().loadGraphic('assets/images/go.png');
 					go.scrollFactor.set();
@@ -180,11 +168,7 @@ class PlayState extends FlxTransitionableState
 							go.destroy();
 						}
 					});
-					#if flash
 					FlxG.sound.play('assets/sounds/introGo.mp3', 0.6);
-					#else
-					FlxG.sound.play('assets/sounds/introGo.ogg', 0.6);
-					#end
 				case 4:
 			}
 
@@ -233,11 +217,7 @@ class PlayState extends FlxTransitionableState
 	function startSong():Void
 	{
 		countingDown = false;
-		#if flash
 		FlxG.sound.playMusic("assets/music/" + curLevel + "_Inst.mp3");
-		#else
-		FlxG.sound.playMusic("assets/music/" + curLevel + "_Inst.ogg");
-		#end
 		vocals.play();
 	}
 
@@ -256,11 +236,7 @@ class PlayState extends FlxTransitionableState
 
 		curSong = songData.song;
 
-		#if flash
 		vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices.mp3");
-		#else
-		vocals = new FlxSound().loadEmbedded("assets/music/" + curSong + "_Voices.ogg");
-		#end
 		FlxG.sound.list.add(vocals);
 
 		notes = new FlxTypedGroup<Note>();
@@ -440,7 +416,6 @@ class PlayState extends FlxTransitionableState
 		else
 			Conductor.songPosition = FlxG.sound.music.time;
 		var playerTurn:Int = totalBeats % (sectionLengths[curSection] * 8);
-
 
 		if (playerTurn == (sectionLengths[curSection] * 8) - 1 && !sectionScored)
 		{
@@ -687,7 +662,7 @@ class PlayState extends FlxTransitionableState
 			startDelay: Conductor.crochet * 0.001
 		});
 
-		//curSection += 1;
+		curSection += 1;
 	}
 
 	private function keyShit():Void
@@ -830,11 +805,7 @@ class PlayState extends FlxTransitionableState
 			}
 			combo = 0;
 
-			#if flash
 			FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + ".mp3", FlxG.random.float(0.05, 0.2));
-			#else
-			FlxG.sound.play('assets/sounds/missnote' + FlxG.random.int(1, 3) + ".ogg", FlxG.random.float(0.05, 0.2));
-			#end
 
 			boyfriend.stunned = true;
 

@@ -64,11 +64,7 @@ class TitleState extends FlxTransitionableState
 		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
-		#if flash
 		FlxG.sound.playMusic('assets/music/title.mp3', 0, false);
-		#else
-		FlxG.sound.playMusic('assets/music/title.ogg', 0, false);
-		#end
 
 		FlxG.sound.music.fadeIn(4, 0, 0.7);
 	}
@@ -88,11 +84,7 @@ class TitleState extends FlxTransitionableState
 			{
 				FlxG.switchState(new PlayState());
 			});
-			#if flash
 			FlxG.sound.play('assets/music/titleShoot.mp3', 0.7);
-			#else
-			FlxG.sound.play('assets/music/titleShoot.ogg', 0.7);
-			#end
 		}
 
 		super.update(elapsed);
